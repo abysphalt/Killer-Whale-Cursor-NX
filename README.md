@@ -3,6 +3,18 @@
 ## What's this?
 This is a recreation of the [famous Killer Whale Cursor flash app](http://img0.liveinternet.ru/images/attach/c/5//3970/3970473_sprite198.swf) for the Nintendo Switch, made using only Devkitpro and a couple of libraries.
 
+Current features implemented:
+* Use of motion tracking in the right joy-con and touch input to make the Killer Whale follow the cursor
+* Ability to reset cursor position by pressing Y
+* Ability to toggle between a front and rear view of the whale (basically changing the draw order) by pressing X
+* Toggle on-screen text for full usage of the screen by pressing B
+* Customize motion sensitivity, whale movement speed, and "flexibility" (how fast the individual segments follow eachother)
+* Customizable whale diffuse color, as well as background color
+
+Planned features:
+* Loading custom backdrop images from the microSD card
+* Slightly more accurate motion tracking
+
 ## Where can I get the latest release from?
 Right here: https://github.com/Voxel9/Killer-Whale-Cursor-NX/releases/latest
 
