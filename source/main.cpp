@@ -15,13 +15,13 @@ float Lerp(float a, float b, float t)		{ return a + t * (b - a); }
 float CosLerp(float a, float b, float t)	{ return Lerp(a, b, (-cos(3.14f*t) / 2.0f) + 0.5f); }
 
 int main(int argc, char* argv[]) {
-    if (!initEgl(nwindowGetDefault())) {
-        return EXIT_FAILURE;
+	if (!initEgl(nwindowGetDefault())) {
+		return EXIT_FAILURE;
 	}
 	
 	romfsInit();
 	
-    gladLoadGL();
+	gladLoadGL();
 	initShaders();
 	
 	Font Text("romfs:/fonts/BerlinSans.ttf");
@@ -39,11 +39,11 @@ int main(int argc, char* argv[]) {
 	
 	// For motion input
 	u32 handles[3];
-    hidGetSixAxisSensorHandles(&handles[0], 2, CONTROLLER_PLAYER_1, TYPE_JOYCON_PAIR);
-    hidGetSixAxisSensorHandles(&handles[2], 1, CONTROLLER_PLAYER_1, TYPE_PROCONTROLLER);
-    hidStartSixAxisSensor(handles[0]);
-    hidStartSixAxisSensor(handles[1]);
-    hidStartSixAxisSensor(handles[2]);
+	hidGetSixAxisSensorHandles(&handles[0], 2, CONTROLLER_PLAYER_1, TYPE_JOYCON_PAIR);
+	hidGetSixAxisSensorHandles(&handles[2], 1, CONTROLLER_PLAYER_1, TYPE_PROCONTROLLER);
+	hidStartSixAxisSensor(handles[0]);
+	hidStartSixAxisSensor(handles[1]);
+	hidStartSixAxisSensor(handles[2]);
 	
 	// User Variables
 	int MotionSensitivity = 150;
@@ -72,13 +72,13 @@ int main(int argc, char* argv[]) {
 	};
 	
 	int varSelection = 0;
-
-    while (appletMainLoop()) {
-        hidScanInput();
-        u32 kDown = hidKeysDown(CONTROLLER_P1_AUTO);
+	
+	while (appletMainLoop()) {
+		hidScanInput();
+		u32 kDown = hidKeysDown(CONTROLLER_P1_AUTO);
 		u32 kHeld = hidKeysHeld(CONTROLLER_P1_AUTO);
-        if (kDown & KEY_PLUS) {
-            break;
+		if (kDown & KEY_PLUS) {
+			break;
 		}
 		
 		else if(kDown & KEY_Y) {
@@ -156,7 +156,7 @@ int main(int argc, char* argv[]) {
 			}
 		}
 		
-        // Render loop begins here
+		// Render loop begins here
 		glClearColor(BGColR/255.0f, BGColG/255.0f, BGColB/255.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		
@@ -167,7 +167,7 @@ int main(int argc, char* argv[]) {
 			Text.DrawText(10, 120, 0.65f, "[X] Toggle between front/back view");
 			Text.DrawText(10, 150, 0.65f, "[B] Show/hide on-screen text");
 			Text.DrawText(10, 195, 0.65f, "Use D-pad/sticks to change values");
-		
+			
 			for(int i = 0; i < (int)(sizeof(variableTable)/sizeof(varTable)); i++) {
 				if(varSelection == i) {
 					Text.SetColor(1.0f, 0.0f, 0.0f);
@@ -190,16 +190,16 @@ int main(int argc, char* argv[]) {
 		}
 		Cursor.Draw();
 		
-        SwapBuffers();
-    }
+		SwapBuffers();
+	}
 	
 	hidStopSixAxisSensor(handles[0]);
-    hidStopSixAxisSensor(handles[1]);
-    hidStopSixAxisSensor(handles[2]);
+	hidStopSixAxisSensor(handles[1]);
+	hidStopSixAxisSensor(handles[2]);
 	
-    deinitShaders();
-    deinitEgl();
+	deinitShaders();
+	deinitEgl();
 	
 	romfsExit();
-    return EXIT_SUCCESS;
+	return EXIT_SUCCESS;
 }
