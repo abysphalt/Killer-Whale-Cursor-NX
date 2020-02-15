@@ -3,8 +3,6 @@
 #include <string.h>
 #include <switch.h>
 
-#include <vector>
-
 #include "graphics.h"
 #include "font.h"
 #include "sprite.h"
@@ -15,20 +13,6 @@
 // Lerp/CosLerp helper functions
 float Lerp(float a, float b, float t)		{ return a + t * (b - a); }
 float CosLerp(float a, float b, float t)	{ return Lerp(a, b, (-cos(3.14f*t) / 2.0f) + 0.5f); }
-
-const char *SegmentNames[] = {
-	"romfs:/shapes/1.png",	"romfs:/shapes/2.png",	"romfs:/shapes/3.png",	"romfs:/shapes/4.png",
-	"romfs:/shapes/5.png",	"romfs:/shapes/6.png",	"romfs:/shapes/7.png",	"romfs:/shapes/8.png",
-	"romfs:/shapes/9.png",	"romfs:/shapes/10.png",	"romfs:/shapes/11.png",	"romfs:/shapes/12.png",
-	"romfs:/shapes/13.png",	"romfs:/shapes/14.png",	"romfs:/shapes/15.png",	"romfs:/shapes/16.png",
-	"romfs:/shapes/17.png",	"romfs:/shapes/18.png",	"romfs:/shapes/19.png",	"romfs:/shapes/20.png",
-	"romfs:/shapes/21.png",	"romfs:/shapes/22.png",	"romfs:/shapes/23.png",	"romfs:/shapes/24.png",
-	"romfs:/shapes/25.png",	"romfs:/shapes/26.png",	"romfs:/shapes/27.png",	"romfs:/shapes/28.png",
-	"romfs:/shapes/29.png",	"romfs:/shapes/30.png",	"romfs:/shapes/31.png",	"romfs:/shapes/32.png",
-	"romfs:/shapes/33.png",	"romfs:/shapes/34.png",	"romfs:/shapes/35.png",	"romfs:/shapes/36.png",
-	"romfs:/shapes/37.png",	"romfs:/shapes/38.png",	"romfs:/shapes/39.png",	"romfs:/shapes/40.png",
-	"romfs:/shapes/41.png",	"romfs:/shapes/42.png",	"romfs:/shapes/43.png",	"romfs:/shapes/44.png",
-};
 
 int main(int argc, char* argv[]) {
     if (!initEgl(nwindowGetDefault())) {
@@ -43,13 +27,14 @@ int main(int argc, char* argv[]) {
 	Font Text("romfs:/fonts/BerlinSans.ttf");
 	Text.SetColor(0.0f, 0.0f, 0.0f);
 	
-	Sprite Cursor(SCREEN_WIDTH/2, SCREEN_HEIGHT/2, 4, 4, "romfs:/shapes/cursor.png");
-	std::vector<Sprite> Segments;
+	Sprite Cursor, Segments[44];
+	Cursor.Init(SCREEN_WIDTH/2, SCREEN_HEIGHT/2, 4, 4, "romfs:/shapes/cursor.png");
 	
-	Sprite *NewSegment;
 	for(int i = 0; i < 44; i++) {
-		NewSegment = new Sprite(SCREEN_WIDTH/2, SCREEN_HEIGHT/2, 1254/4, 1694/4, SegmentNames[i]);
-		Segments.push_back(*NewSegment);
+		char SegFile[64];
+		sprintf(SegFile, "romfs:/shapes/%i.png", i+1);
+		
+		Segments[i].Init(SCREEN_WIDTH/2, SCREEN_HEIGHT/2, 1254/4, 1694/4, SegFile);
 	}
 	
 	// For motion input

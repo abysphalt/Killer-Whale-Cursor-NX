@@ -6,7 +6,9 @@ typedef struct {
     float texcoord[2];
 } Vertex;
 
-Sprite::Sprite(float Xpos, float Ypos, float Xscale, float Yscale, const char *filepath) {
+Sprite::Sprite() { }
+
+void Sprite::Init(float Xpos, float Ypos, float Xscale, float Yscale, const char *filepath) {
 	posX = Xpos;
 	posY = Ypos;
 	scaleX = Xscale;

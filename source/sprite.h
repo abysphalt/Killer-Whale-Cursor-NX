@@ -13,7 +13,9 @@ public:
 	
 	GLuint s_vao, s_vbo, s_tex;
 	
-	Sprite(float posX, float posY, float scaleX, float scaleY, const char *filepath);
+	Sprite();
+	
+	void Init(float posX, float posY, float scaleX, float scaleY, const char *filepath);
 	void SetColor(float red, float green, float blue);
 	void Resize(float Xscale, float Yscale);
 	void SetTexture(const char *filepath);
