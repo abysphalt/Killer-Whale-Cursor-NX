@@ -44,6 +44,11 @@ DATA		:=	data
 INCLUDES	:=	include
 ROMFS		:=	romfs
 
+APP_TITLE	:=	Killer Whale Cursor
+APP_AUTHOR	:=	Voxel
+APP_VERSION	:=	1.0.0
+ICON		:=	resources/icon.jpg
+
 #---------------------------------------------------------------------------------
 # options for code generation
 #---------------------------------------------------------------------------------
