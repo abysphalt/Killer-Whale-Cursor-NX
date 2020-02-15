@@ -10,6 +10,11 @@
 #define SCREEN_WIDTH 1280
 #define SCREEN_HEIGHT 720
 
+struct varTable {
+	const char *name;
+	int *var;
+};
+
 // Lerp/CosLerp helper functions
 float Lerp(float a, float b, float t)		{ return a + t * (b - a); }
 float CosLerp(float a, float b, float t)	{ return Lerp(a, b, (-cos(3.14f*t) / 2.0f) + 0.5f); }
@@ -55,10 +60,6 @@ int main(int argc, char* argv[]) {
 	bool textHidden = false;
 	bool isBehind = false;
 	
-	struct varTable {
-		const char *name;
-		int *var;
-	};
 	varTable variableTable[] = {
 		{ "Motion Sensitivity: %i", &MotionSensitivity },
 		{ "Whale Move Speed: %i", &OrcaMoveSpeed },
